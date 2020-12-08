@@ -1,0 +1,31 @@
+body {
+    text-align: center;
+}
+
+#map {
+    height: 550px;
+    width: 700px;
+    display: inline-block;
+}
+#canvas > canvas {
+    border: 1px solid black
+}
+
+#options {
+    text-align: left;
+    display: inline-block
+}
+
+#options > div {
+    background-color: rgb(221, 221, 221);
+    padding: 10px;
+    margin: 10px;
+}
+
+#options input {
+    margin: 5px;
+}
+
+#buttons {
+    text-align: center;
+}

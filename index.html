@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+</head>
+
+<body>
+    <div id='map'></div>
+
+    <div id='options'>
+        <div>
+            API key: <input id='key' type='password' value='NPZaK6r1eM5DfJqESO0a072sAM05WW'>(optional)<br>
+            Canvas Height: <input id='canvasheight' type='number' min='100' step='1' value='500'><br>
+            <hr>
+            Detail: <input id='detail' type='number' min='3' step='1' value='100'><br>
+            Lines: <input id='lines' type='number' min='3' step='1' value=30><br>
+            Multiplier: <input id='multiplier' type='number' value=20><br>
+            Cut-off: <input id='cutoff' type='number' step='1' value=0><br>
+            Draw cut-off: <input id='drawcutoff' type="checkbox"><br>
+        </div>
+        <div>
+            Bowing: <input id='bowing' type='number' min='0' step='0.1' value=2><br>
+            Roughness: <input id='roughness' type='number' min='0' step='0.1' value=0.7><br>
+            Line thickness: <input id='thickness' type='number' min='0' step='1' value=1><br>
+            Line color: <input id='color' type="color" value="#000000"><br>
+            Random colors: <input id='randomcolors' type="checkbox"><br>
+        </div>
+        <div>
+            TL: <input id='TL_lat' type='number' value='22.520283'><input id='TL_lng' type='number' value='-160.625901'><br>
+            BR: <input id='BR_lat' type='number' value='18.458237'><input id='BR_lng' type='number' value='-154.640640'><br>
+        </div>
+        <div id='buttons'>
+            <button id='reload'>Reload</button>
+            <button id='save'>Save</button>
+        </div>
+        
+    </div>
+
+    <div id='canvas'></div>
+
+    
+</body>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+<script src='./leaflet.editable.js'></script>
+<script src='./p5.min.js'></script>
+<script src='./p5.scribble.js'></script>
+<script src='./index.js'></script>
+
+</html>
