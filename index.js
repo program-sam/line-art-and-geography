@@ -2,6 +2,11 @@
 // P5 and elevation stuff //
 ////////////////////////////
 
+URLqueue = []
+const progressBar = document.getElementById('progress')
+
+function delay(ms) {  return new Promise(resolve => setTimeout(resolve, ms)); }
+
 async function getElevation(coordinates) {
     const apiUrl = 'https://elevation-api.io/api/elevation'
     const key = document.getElementById('key')
@@ -12,22 +17,29 @@ async function getElevation(coordinates) {
     while (coordinates.length > 0) {
         coordinateAoA.push(coordinates.splice(0, 250))
     }
-    elevationPromises = coordinateAoA.map(array => {
-        return fetch(apiUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'ELEVATION_API_KEY': key
-            },
-            body: JSON.stringify({ points: array })
-        })
-    })
+    
+    URLqueue = coordinateAoA
+    progressBar.max = URLqueue.length
+    progressBar.value = 0
 
-    // Get the responses of the elevation API and put the elevations in one long list
-    // This list corresponds to the indices of the coordinates.
-    const elevationResponse = await Promise.all(elevationPromises)
-    const elevationAoA = await Promise.all(elevationResponse.map(value => { return value.json() }))
-    elevationData = elevationAoA.map(value => value.elevations).flat(1).map(value => value.elevation)
+    const responses = []
+    while (URLqueue.length > 0){
+        progressBar.value = progressBar.max - URLqueue.length + 1
+        while (true){
+            const points = URLqueue[0]
+            const res = await fetch(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'ELEVATION_API_KEY': key },
+                body: JSON.stringify({ points: points })
+            })
+            if (res.status == 200){
+                responses.push(await res.json())
+                URLqueue.shift()
+                break
+            } else { console.log('Waiting as to not spam the API'); await delay(1000) }
+        }        
+    }
+    elevationData = responses.map(value => value.elevations).flat(1).map(value => value.elevation)
 
     return elevationData
 }
@@ -58,6 +70,7 @@ let sketchFunction = function (p) {
         p.createCanvas(width, height);
         p.noLoop()
     }
+
     p.draw = async function () {
         p.clear()
         p.strokeWeight(1)

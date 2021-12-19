@@ -13,7 +13,7 @@
 
     <div id='options'>
         <div>
-            API key: <input id='key' type='password' value='Your Key Here'>(optional)<br>
+            API key: <input id='key' type='password' >(optional)<br>
             Canvas Height: <input id='canvasheight' type='number' min='100' step='1' value='500'><br>
             <hr>
             Detail: <input id='detail' type='number' min='3' step='1' value='100'><br>
@@ -34,10 +34,10 @@
             BR: <input id='BR_lat' type='number' value='18.458237'><input id='BR_lng' type='number' value='-154.640640'><br>
         </div>
         <div id='buttons'>
-            <button id='reload'>Reload</button>
+            <button id='reload'>Redraw</button>
             <button id='save'>Save</button>
         </div>
-        
+        <progress id='progress' value="0" max="100"> </progress>
     </div>
 
     <div id='canvas'></div>

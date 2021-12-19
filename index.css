@@ -1,9 +1,13 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     text-align: center;
 }
 
 #map {
-    height: 550px;
+    height: 600px;
     width: 700px;
     display: inline-block;
 }
@@ -29,3 +33,16 @@ body {
 #buttons {
     text-align: center;
 }
+
+progress {
+    width: calc(100% - 20px);
+    height: 1em;
+    border-radius: 0.1em;
+    margin: 0 10px 10px;
+}
+
+progress::-webkit-progress-bar {
+    background-color: rgb(221, 221, 221);
+    border-radius: 2px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+  }
